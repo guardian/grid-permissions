@@ -25,6 +25,12 @@
       <a class="navbar-brand" href="#">Grid Permission Groups</a>
     </nav>
     <div class="permissions-view">
+      {{#if error}} 
+        <div class="alert alert-danger" role="alert">
+          Error getting permissions from API! 
+          <a href="{{apiUrl}}/login?redirectUri={{redirectUrl}}">Try logging in</a>
+        <div>
+      {{/if}}
       <p>Contact <a href="mailto:thegrid.dev@guardian.co.uk">the grid team</a> for more information.</p> 
       {{#store.store:group}}
       <hr>
@@ -32,7 +38,7 @@
         <h2>{{group}}</h2>
         <ul class="member-list">
           {{#store.store[group]:member}}
-          <li class="member-list__name label label-info">{{store.store[group][member]}}</li>
+          <li class="member-list__name label label-default">{{store.store[group][member]}}</li>
           {{/store.store[group]}}
         </ul>
       </div>
