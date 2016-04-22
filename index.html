@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="Grid Permissions"/>
+
+		<title>Grid Permissions</title>
+
+		<script src="jspm_packages/system.js"></script>
+		<script src="config.js"></script>
+
+		<script>
+      System.import("app").catch(function(error) {
+        setTimeout(function(){ throw error; });
+		  });
+    </script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<link href="main.css" media="all" rel="stylesheet">
+	</head>
+	<body>
+    <script id='template' type='text/ractive'>
+    <nav class="navbar navbar-default">
+      <a class="navbar-brand" href="#">Grid Permission Groups</a>
+    </nav>
+    <div class="permissions-view">
+      <p>Contact <a href="mailto:thegrid.dev@guardian.co.uk">the grid team</a> for more information.</p> 
+      {{#store.store:group}}
+      <hr>
+      <div class="group-list">
+        <h2>{{group}}</h2>
+        <ul class="member-list">
+          {{#store.store[group]:member}}
+          <li class="member-list__name label label-info">{{store.store[group][member]}}</li>
+          {{/store.store[group]}}
+        </ul>
+      </div>
+      {{/store.store}}
+    </div>
+    <div class="well well-sm">Last updated: <strong>{{store.lastUpdated}}</strong></div>
+    </script>
+
+		<div id="container"></div>
+	</body>
+</html>
