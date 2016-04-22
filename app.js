@@ -15,11 +15,6 @@ var ractive = new Ractive({
 
 const current$ = Permissions.authGroups$;
 
-current$.catch((e) => {
-  console.log("CAUGHT!");
-  ractive.set('error', true)
-});
-
 current$.subscribe(
     (m) => { 
       ractive.set('store', m)
